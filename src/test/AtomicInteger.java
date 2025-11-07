@@ -3,7 +3,11 @@ package test;
 public class AtomicInteger {
     private int value;
 
-    public void increment() {
+//    public void increment() {
+//        value++;
+//    }
+
+    public synchronized void increment() {
         value++;
     }
 

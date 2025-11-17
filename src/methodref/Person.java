@@ -1,7 +1,7 @@
 package methodref;
 
 public class Person {
-    private String name;
+    private final String name;
 
     // 생성자
     public Person() {

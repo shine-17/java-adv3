@@ -12,6 +12,5 @@ public class MethodRefStartV1 {
 
         Integer result2 = add2.apply(1, 2);
         System.out.println("result2 = " + result2);
-
     }
 }

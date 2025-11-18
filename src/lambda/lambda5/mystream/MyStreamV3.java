@@ -47,4 +47,9 @@ public class MyStreamV3<T> {
     public List<T> toList() {
         return internalList;
     }
+
+    // 추가
+    public T getFirst() {
+        return internalList.get(0);
+    }
 }

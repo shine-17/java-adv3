@@ -10,8 +10,8 @@ import static util.MyLogger.log;
 public class ForkJoinMain2 {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         int processorCount = Runtime.getRuntime().availableProcessors();
-
         ForkJoinPool commonPool = ForkJoinPool.commonPool();
+
         log("processorCount = " + processorCount + ", commonPool = " + commonPool.getParallelism());
 
         List<Integer> data = IntStream.rangeClosed(1, 8)

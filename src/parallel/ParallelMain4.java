@@ -15,7 +15,7 @@ public class ParallelMain4 {
         long startTime = System.currentTimeMillis();
 
         int sum = IntStream.rangeClosed(1, 8)
-                .parallel() // 추가
+                .parallel() // 추가. 공용 ForkJoinPool 사용. 자동 병렬 처리
                 .map(HeavyJob::heavyTask)
                 .reduce(0, (a, b) -> a + b);
 

@@ -2,6 +2,7 @@ package parallel;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ForkJoinPool;
 import java.util.stream.IntStream;
 
 import static util.MyLogger.log;
@@ -13,7 +14,7 @@ public class ParallelMain5 {
 
         // 요청 풀 추가
         ExecutorService requestPool = Executors.newFixedThreadPool(100);
-        int nThreads = 3; // 1, 2, 3, 10, 20
+        int nThreads = 20; // 1, 2, 3, 10, 20
         for (int i = 1; i <= nThreads; i++) {
             String requestName = "request" + i;
             requestPool.submit(() -> logic(requestName));
@@ -23,12 +24,13 @@ public class ParallelMain5 {
         requestPool.close();
     }
 
+    // 공용 풀은 절대 I/O 바운드 작업을 하면 안된다!
     private static void logic(String requestName) {
         log("[" + requestName + "] START");
         long startTime = System.currentTimeMillis();
 
         int sum = IntStream.rangeClosed(1, 4)
-                .parallel() // 주석 처리가 더 빨리 처리될 수 있음
+//                .parallel() // 주석 처리가 더 빨리 처리될 수 있음
                 .map(i -> HeavyJob.heavyTask(i, requestName))
                 .reduce(0, (a, b) -> a + b);
 
